@@ -1,113 +1,120 @@
-import Image from 'next/image'
+import Link from "next/link";
+import { compareDesc, format, parseISO } from "date-fns";
+import { allPosts, Post } from "contentlayer/generated";
+import { getMDXComponent } from "next-contentlayer/hooks";
+import BlogFilter from "components/blogfilter";
+
+import TwitterPost from "components/twitterpost";
+import Icons from "components/icons";
+import Typewriter from "components/Typewriter";
+
+function PostTags(post: Post) {
+  return (
+    <div>
+      <h3>
+        <Link href={post.url}>{post.tags}</Link>
+      </h3>
+    </div>
+  );
+}
+
+function PostCard(post: Post) {
+  const Content = getMDXComponent(post.body.code);
+
+  return (
+    <div className=" w-2/3 px-5 my-2 py-3 rounded  outline-dashed outline-1 border-gray-200 dark:border-gray-800 bg-stone-100 ">
+      <div className="flex justify-between items-center">
+        <span className=" text-gray-600 font-light">
+          {format(parseISO(post.date), "LLLL d, yyyy")}
+        </span>
+      </div>
+      <div className="">
+        <p className=" text-gray-900 font-bold text-xl">{post.title}</p>
+      </div>
+      <div className="">
+        <p className=" text-gray-600">{post.desc}</p>
+      </div>
+      <div className="flex justify-between items-center mt-2">
+        <Link
+          href={post.url}
+          className="dark:text-stone-900 hover:text-orange-400  outline-dashed outline-1 rounded px-2 py-1 dark:hover:text-orange-400 "
+        >
+          Read more ➪
+        </Link>
+      </div>
+    </div>
+  );
+}
 
 export default function Home() {
+  //getting all tags from all post , and storing it in a set
+  const allTagSet = allPosts.reduce((acc: any, post: any) => {
+    return acc.add(post.tags);
+  }, new Set([]));
+
+  //converting a set into an array , also sorting it alphabettically
+
+  const allTagsArray = [...allTagSet].sort((a, b) => a.localeCompare(b));
+  //adding the default 'All' option
+  //allTagsArray.unshift("All");
+  //converting array to string
+  const arrString = allTagsArray.toLocaleString();
+
+  //console.log(allTagsArray);
+  const posts = allPosts.sort((a, b) =>
+    compareDesc(new Date(a.date), new Date(b.date))
+  );
+
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex">
-        <p className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto  lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
-          Get started by editing&nbsp;
-          <code className="font-mono font-bold">src/app/page.tsx</code>
-        </p>
-        <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:h-auto lg:w-auto lg:bg-none">
-          <a
-            className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{' '}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className="dark:invert"
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
+    <>
+      <div className="mt-10 mx-auto grid grid-flow-row  grid-cols-1 laptop:gap-4 laptop:grid-cols-2  place-items-center">
+        <div className="laptop:col-span-2 mx-50">
+          <h1 className="  dark:text-background  laptop:text-2xl text-xl font-mono  px-50 rounded-xl py-10">
+            <Typewriter></Typewriter>
+          </h1>
+        </div>
+
+        <div>
+          <div className="flex  flex-wrap w-fit ">
+            <BlogFilter
+              tags={arrString}
+              className="  items-center justify-center"
+            ></BlogFilter>
+          </div>
+          <div className="flex flex-row space-x-4 py-4"></div>
+
+          {posts.map((post, idx) => (
+            <PostCard key={idx} {...post} />
+          ))}
+        </div>
+        <div className=" laptop:w-2/3 laptop:mx-auto ">
+          <h1 className="text-xl laptop:text-2xl font-bold py-2 mt-5  text-otherblack dark:text-background ">
+            Twitter!
+          </h1>
+          <TwitterPost></TwitterPost>
+          <div className="bg-orange-200 rounded-lg shadow-md outline-dashed outline-1 p-6 w-80">
+            <div className="mb-4">
+              <h2 className="text-xl font-bold text-stone-900 dark:text-stone-900 mb-2">
+                Contact Information
+              </h2>
+              <p className="text-stone-700 font-medium">Name: Shubham Soni</p>
+              <p className="text-stone-700 font-medium">
+                Email: abcd@gmail.com
+              </p>
+              {/* Add more contact details as needed */}
+            </div>
+            <div className="flex space-x-4 ">
+              <Icons></Icons>
+            </div>
+          </div>
         </div>
       </div>
-
-      <div className="relative flex place-items-center before:absolute before:h-[300px] before:w-[480px] before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-[240px] after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700 before:dark:opacity-10 after:dark:from-sky-900 after:dark:via-[#0141ff] after:dark:opacity-40 before:lg:h-[360px] z-[-1]">
-        <Image
-          className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert"
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
-
-      <div className="mb-32 grid text-center lg:mb-0 lg:grid-cols-4 lg:text-left">
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Docs{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Find in-depth information about Next.js features and API.
-          </p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Learn{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Learn about Next.js in an interactive course with&nbsp;quizzes!
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Templates{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Explore the Next.js 13 playground.
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Deploy{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
-  )
+    </>
+  );
+}
+function tag(value: Post, index: number, array: Post[]): unknown {
+  throw new Error("Function not implemented.");
+}
+function a(a: any, b: any): number {
+  throw new Error("Function not implemented.");
 }
