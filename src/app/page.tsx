@@ -94,13 +94,18 @@ export default function Home() {
           <TwitterPost></TwitterPost>
           <div className="bg-orange-200 rounded-lg shadow-md outline-dashed outline-1 p-6 w-80">
             <div className="mb-4">
-              <h2 className="text-xl font-bold text-stone-900 dark:text-stone-900 mb-2">
-                Contact Information
-              </h2>
-              <p className="text-stone-700 font-medium">Name: Shubham Soni</p>
-              <p className="text-stone-700 font-medium">
-                Email: abcd@gmail.com
-              </p>
+              <div>
+                <p className="my-4 font-medium dark:text-black">
+                  Feel free to contact me by clicking the buttons below:
+                </p>
+                <a
+                  href={`mailto:${"s.s.1.0.0.4.9.7hubh@gmail.com"}`}
+                  className="bg-orange-400 hover:bg-orange-500 my-2 outline-dashed outline-1  text-black  py-2 px-4 rounded"
+                >
+                  Email Me
+                </a>
+              </div>
+
               {/* Add more contact details as needed */}
             </div>
             <div className="flex space-x-4 ">
