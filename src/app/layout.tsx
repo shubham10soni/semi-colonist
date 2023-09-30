@@ -7,7 +7,7 @@ import Footer from "components/footer";
 import Providers from "components/provider";
 
 export const metadata: Metadata = {
-  title: "semiColon-ist",
+  title: "semiColonised",
   description: "Colonised by Semicolon;",
 };
 
@@ -16,7 +16,7 @@ const header = (
     <div>
       <Link href={"/"}>
         <h1 className="text-3xl px-2 my-2 flex flex-col justify-between items-center text-slate-100 ">
-          semiColon-ist
+          semiColonised
         </h1>
       </Link>
       <p className="text-otherblack text-xm px-2">

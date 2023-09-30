@@ -5,7 +5,7 @@ const Footer = () => {
     <footer className=" flex flex-col  justify-center sticky bottom-0 bg-opacity-30 backdrop-filter backdrop-blur-md   py-8 w-screen z-50 border-t-[0.5px] border-orange-100 dark:border-stone-700 ">
       <div className="container mx-auto max-h-10 text-center">
         <p className="text-sm ">
-          &copy; {new Date().getFullYear()} SemiColonist. All rights reserved.
+          &copy; {new Date().getFullYear()} SemiColonised. All rights reserved.
         </p>
         <p className="mt-2 text-xs ">
           Created by{" "}

@@ -5,7 +5,7 @@ import { allPosts, Post } from "contentlayer/generated";
 export const generateMetadata = ({ params }: { params: { tag: string } }) => {
   const post = allPosts.find((post) => post.tags.includes(params.tag));
   return {
-    title: `semiColon-ist | ${params.tag}`,
+    title: `semiColonised | ${params.tag}`,
     description: `Posts related to ${params.tag}`,
   };
 };
