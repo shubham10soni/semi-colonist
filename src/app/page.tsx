@@ -100,7 +100,7 @@ export default function Home() {
                 </p>
                 <a
                   href={`mailto:${"s.s.1.0.0.4.9.7hubh@gmail.com"}`}
-                  className="bg-orange-400 hover:bg-orange-500 my-2 outline-dashed outline-1  text-black  py-2 px-4 rounded"
+                  className="bg-orange-400 hover:bg-orange-500 my-2 outline-dashed outline-1 font-semibold text-black  py-2 px-4 rounded"
                 >
                   Email Me
                 </a>

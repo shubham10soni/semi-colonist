@@ -6,7 +6,7 @@ const icons = () => {
       <ul className="flex flex-row justify-between space-x-1 laptop:space-x-3 ">
         <li>
           <a
-            href="#"
+            href="https://twitter.com/semi_colonised"
             className="text-gray-500 hover:text-gray-900 dark:hover:text-stone-900 dark:text-gray-500"
           >
             <svg
