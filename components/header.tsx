@@ -12,7 +12,7 @@ const Header = () => {
             Semi
           </span>
           <span className="text-otherblack dark:text-background text-2xl laptop:text-4xl">
-            colonist
+            colonised
           </span>
         </Link>
       </div>

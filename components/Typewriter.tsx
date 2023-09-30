@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 function Typewriter() {
   const [text, setText] = useState("");
   const content =
-    "Weelcome to Semicolonist, my personal digital notebook. Here,I document my tech learning journey, insights, and discoveries. Join me as I unlock the fascinating world of technology, one note at a time.";
+    "Weelcome to Semicolonised, my personal digital notebook. Here,I document my tech learning journey, insights, and discoveries. Join me as I unlock the fascinating world of technology, one note at a time.";
   let index = 0;
 
   useEffect(() => {
