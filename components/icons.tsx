@@ -51,7 +51,7 @@ const icons = () => {
 
         <li>
           <a
-            href="https://www.linkedin.com/"
+            href="www.linkedin.com/in/shubham-soni-716b93211"
             target="_blank"
             rel="noopener noreferrer"
           >
