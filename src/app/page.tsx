@@ -22,7 +22,7 @@ function PostCard(post: Post) {
   const Content = getMDXComponent(post.body.code);
 
   return (
-    <div className=" w-2/3 px-5 my-2 py-3 rounded  outline-dashed outline-1 border-gray-200 dark:border-gray-800 bg-stone-100 ">
+    <div className=" laptop:w-2/3 px-5 my-2 py-3 rounded  outline-dashed outline-1 border-gray-200 dark:border-gray-800 bg-stone-100 ">
       <div className="flex justify-between items-center">
         <span className=" text-gray-600 font-light">
           {format(parseISO(post.date), "LLLL d, yyyy")}
@@ -60,14 +60,14 @@ export default function Home() {
   //converting array to string
   const arrString = allTagsArray.toLocaleString();
 
-  //console.log(allTagsArray);
+  console.log(arrString);
   const posts = allPosts.sort((a, b) =>
     compareDesc(new Date(a.date), new Date(b.date))
   );
 
   return (
     <>
-      <div className="mt-10 mx-auto grid grid-flow-row  grid-cols-1 laptop:gap-4 laptop:grid-cols-2  place-items-center">
+      <div className="mt-10 mx-auto grid grid-flow-row  grid-cols-1 laptop:gap-4 laptop:grid-cols-2  ">
         <div className="laptop:col-span-2 mx-50">
           <h1 className="  dark:text-background  laptop:text-2xl text-xl font-mono  px-50 rounded-xl py-10">
             <Typewriter></Typewriter>
@@ -88,7 +88,7 @@ export default function Home() {
           ))}
         </div>
         <div className=" laptop:w-2/3 laptop:mx-auto ">
-          <h1 className="text-xl laptop:text-2xl font-bold py-2 mt-5  text-otherblack dark:text-background ">
+          <h1 className="text-xl laptop:text-2xl font-bold laptop:mt-2 mt-5 text-otherblack dark:text-background ">
             Twitter!
           </h1>
           <TwitterPost></TwitterPost>

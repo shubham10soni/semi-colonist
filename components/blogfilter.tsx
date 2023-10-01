@@ -15,8 +15,8 @@ export default function BlogFilter(tags: any) {
   );
 
   tags = withoutDuplicates?.map((t: any) => t.trim());
-
-  // console.log(tags);
+  console.log("this one");
+  console.log(tags);
 
   return tags?.map((tag: any) => (
     <Link

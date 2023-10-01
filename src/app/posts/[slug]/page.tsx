@@ -15,7 +15,7 @@ export const generateMetadata = ({ params }: { params: { slug: string } }) => {
 
 const components: MDXComponents = {
   img: (props) => (
-    <span className="">
+    <span className="mx-auto">
       <Image
         src={`${props.src}`}
         alt={`${props.alt}`}
@@ -31,7 +31,7 @@ const PostLayout = ({ params }: { params: { slug: string } }) => {
   const Content = useMDXComponent(post!.body.code);
 
   // console.log(allPosts);
-  console.log(generateStaticParams());
+  //console.log(generateStaticParams());
   return (
     <article className="py-8 mt-10 mx-auto  max-w-xl ">
       <div className="mb-8 text-center  ">
@@ -41,7 +41,14 @@ const PostLayout = ({ params }: { params: { slug: string } }) => {
         <h1 className="text-4xl font-bold">{post?.title}</h1>
 
         <h3 className="m-4 ">
-          <ArticleTags tags={post?.tags} />
+          <div className="flex  flex-wrap w-fit  items-center justify-center mx-auto ">
+            <ArticleTags tags={post?.tags} />
+          </div>
+        </h3>
+        <h3 className="m-4 ">
+          <div className="flex  flex-wrap w-fit  items-center italic justify-center mx-auto ">
+            {post?.desc}
+          </div>
         </h3>
       </div>
 
