@@ -38,7 +38,7 @@ function PostCard(post: Post) {
       <div className="flex justify-between items-center mt-2">
         <Link
           href={post.url}
-          className="dark:text-stone-900 hover:text-orange-400 font-semibold bg-orange-200 outline-dashed outline-1 rounded px-2 py-1 dark:hover:text-orange-400 "
+          className="dark:text-stone-900 hover:text-orange-400   outline-dashed outline-1 rounded px-2 py-1 dark:hover:text-orange-400 "
         >
           Read more ➪
         </Link>
