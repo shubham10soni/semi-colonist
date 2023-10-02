@@ -3,7 +3,7 @@ import React from "react";
 const icons = () => {
   return (
     <div>
-      <ul className="flex flex-row justify-between space-x-1 laptop:space-x-3 ">
+      <ul className="flex flex-row justify-between  space-x-3 laptop:space-x-4 ">
         <li>
           <a
             href="https://twitter.com/semi_colonised"

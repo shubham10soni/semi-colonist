@@ -7,7 +7,8 @@ import BlogFilter from "components/blogfilter";
 import TwitterPost from "components/twitterpost";
 import Icons from "components/icons";
 import Typewriter from "components/Typewriter";
-
+import Image from "next/image";
+import Yoda from "public/yoda.gif";
 function PostTags(post: Post) {
   return (
     <div>
@@ -97,10 +98,10 @@ export default function Home() {
               <div>
                 <p className="my-4 font-medium dark:text-black"></p>
                 <div className="font-semibold normal mb-5  text-lg dark:text-black">
-                  I hope you liked it! You can find me here :
+                  <Image src={Yoda} alt={""}></Image>
                 </div>
-                <div className=" flex flex-row ">
-                  <div className="mt-1  ">
+                <div className=" flex flex-row  items-center justify-center ">
+                  <div className="mt-1 ">
                     <Icons></Icons>
                   </div>
                 </div>
