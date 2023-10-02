@@ -37,7 +37,7 @@ function PostCard(post: Post) {
       <div className="flex justify-between items-center mt-2">
         <Link
           href={post.url}
-          className="dark:text-stone-900 hover:text-orange-400  outline-dashed outline-1 rounded px-2 py-1 dark:hover:text-orange-400 "
+          className="dark:text-stone-900 hover:text-orange-400 font-semibold bg-orange-200 outline-dashed outline-1 rounded px-2 py-1 dark:hover:text-orange-400 "
         >
           Read more ➪
         </Link>
@@ -92,24 +92,21 @@ export default function Home() {
             Twitter!
           </h1>
           <TwitterPost></TwitterPost>
-          <div className="bg-orange-200 rounded-lg shadow-md outline-dashed outline-1 p-6 w-80">
+          <div className="bg-orange-200 rounded-lg shadow-md outline-dashed outline-1 py-3 px-5 w-80">
             <div className="mb-4">
               <div>
-                <p className="my-4 font-medium dark:text-black">
-                  Feel free to contact me by clicking the buttons below:
-                </p>
-                <a
-                  href={`mailto:${"s.s.1.0.0.4.9.7hubh@gmail.com"}`}
-                  className="bg-orange-400 hover:bg-orange-500 my-2 outline-dashed outline-1 font-semibold text-black  py-2 px-4 rounded"
-                >
-                  Email Me
-                </a>
+                <p className="my-4 font-medium dark:text-black"></p>
+                <div className="font-semibold normal mb-5  text-lg dark:text-black">
+                  I hope you liked it! You can find me here :
+                </div>
+                <div className=" flex flex-row ">
+                  <div className="mt-1  ">
+                    <Icons></Icons>
+                  </div>
+                </div>
               </div>
 
               {/* Add more contact details as needed */}
-            </div>
-            <div className="flex space-x-4 ">
-              <Icons></Icons>
             </div>
           </div>
         </div>
