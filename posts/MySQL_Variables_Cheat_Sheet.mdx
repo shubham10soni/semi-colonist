@@ -9,7 +9,7 @@ desc: In MySQL, variables are the silent conductors orchestrating the symphony o
 
 ![abcd](/image2.jpeg)
 
-MySQL variables provide a powerful way to store and manipulate data within your database. Understanding the different types of variables, their usage, and best practices is essential for efficient database management. This cheat sheet provides a quick reference guide to MySQL variables along with practical examples and best practices.
+MySQL variables provide a powerful way to store and manipulate data within your database. This cheat sheet provides a quick reference guide to MySQL variables along with practical examples and best practices.
 
 ## What are Variables in MySQL?
 
@@ -33,9 +33,32 @@ You can also declare multiple variables and assign values to them in a single st
 SET @x = 10, @y = 'Hello', @z = NOW();
 ```
 
+In MySQL, the `DECLARE` keyword is used to declare variables within stored programs such as stored procedures, functions, triggers, or compound statements. This keyword allows you to define variables that can be used to store data temporarily and perform various operations within the scope of the program.
+
+The basic syntax for declaring variables using the `DECLARE` keyword is as follows:
+
+```sql
+DECLARE variable_name data_type [DEFAULT value];
+```
+
+Here's what each part of the syntax represents:
+
+- `DECLARE`: This keyword signals the beginning of a variable declaration.
+- `variable_name`: This is the name of the variable you are declaring. It must follow the rules for naming identifiers in MySQL.
+- `data_type`: This specifies the data type of the variable, such as `INT`, `VARCHAR`, `DATE`, etc.
+- `DEFAULT value` (optional): This part allows you to assign an initial value to the variable upon declaration. If not specified, the variable will be initialized to `NULL` by default.
+
+Here's a simple example of declaring a variable named `counter` of type `INT` with an initial value of `0`:
+
+```sql
+DECLARE counter INT DEFAULT 0;
+```
+
+Once declared, you can then use this variable within the stored program to store and manipulate data as needed.
+
 ## Types of Variables
 
-### 1. User-defined Variables 💡
+### 1. User-defined Variables
 
 User-defined variables are created by the user and persist throughout the session. They start with the `@` symbol followed by the variable name.
 
@@ -47,7 +70,7 @@ SET @total_cost = @price * @quantity;
 
 **Use Case:** Calculating the total cost of items in a shopping cart, considering the price per item and quantity.
 
-### 2. Session Variables 🌟
+### 2. Session Variables
 
 Session variables are specific to a single session and are reset when the session ends. They can be set using the `SET SESSION` statement.
 
@@ -59,7 +82,7 @@ SET SESSION sql_mode = 'STRICT_ALL_TABLES';
 
 **Use Case:** Enforcing strict SQL mode for the current session to ensure data integrity.
 
-### 3. Global Variables 🌍
+### 3. Global Variables
 
 Global variables affect the entire MySQL server and persist across sessions. They can be set using the `SET GLOBAL` statement.
 
@@ -71,7 +94,7 @@ SET GLOBAL max_connections = 100;
 
 **Use Case:** Configuring the maximum number of allowed connections to the MySQL server.
 
-### 4. System Variables 🖥️
+### 4. System Variables
 
 System variables control the behavior of the MySQL server and can be viewed using `SHOW VARIABLES`.
 
@@ -83,7 +106,7 @@ SHOW VARIABLES LIKE 'max_connections';
 
 **Use Case:** Checking the maximum number of connections allowed by the MySQL server.
 
-### 5. Predefined Variables 📋
+### 5. Predefined Variables
 
 MySQL provides predefined variables that offer information about the server configuration or status. These variables are accessed using the `@@` prefix followed by the variable name.
 
@@ -95,7 +118,7 @@ SELECT @@version;
 
 **Use Case:** Retrieving the version of the MySQL server.
 
-### Understanding: Predefined, Special, and Dynamic
+### **Understanding Predefined, Special, and Dynamic Variables**
 
 ##### **1. Predefined Variables:**
 
