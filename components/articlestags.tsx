@@ -1,3 +1,4 @@
+import { poppins } from "@/utils/fonts";
 import React from "react";
 
 export default function ArticleTags(tags: any) {
@@ -9,12 +10,16 @@ export default function ArticleTags(tags: any) {
 
   console.log(tags);
 
-  return tags.map((tag: any, i: any) => (
-    <span
-      key={i}
-      className="ml-2 rounded bg-orange-400 px-3 py-2 mt-2 text-medium font-bold text-stone-900  outline-dashed outline-1  dark:outline-stone-100"
-    >
-      # {tag}
-    </span>
-  ));
+  return (
+    <>
+      {tags.map((tag: any, i: any) => (
+        <div
+          key={i}
+          className={` ${poppins} relative  max-w-fit  ml-2 rounded px-3 py-2 mt-2 text-xs  font-medium text-stone-900  ring-1 ring-emerald-50 dark:ring-emerald-100 bg-gradient-to-r from-sky-200 to-emerald-200`}
+        >
+          {`# ${tag}`}
+        </div>
+      ))}
+    </>
+  );
 }

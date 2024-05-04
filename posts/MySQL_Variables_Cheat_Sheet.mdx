@@ -13,7 +13,7 @@ MySQL variables provide a powerful way to store and manipulate data within your 
 
 ## What are Variables in MySQL?
 
-In simple terms, a variable in MySQL is a named storage location that holds a data value. These values can be of various types, such as integers, strings, dates, or even complex data structures. Variables are widely used in MySQL for tasks such as storing query results, passing parameters to stored procedures, and controlling the flow of SQL statements.
+In simple terms, a variable in MySQL is a named storage location that holds a data value. These values canbe of various types, such as integers, strings, dates, or even complex data structures. Variables are widely used in MySQL for tasks suchas storing query results, passing parameters to stored procedures, and controlling the flow of SQL statements.
 
 Declaring and assigning variables in MySQL is done using the `SET` statement. Here's the basic syntax:
 
@@ -33,7 +33,7 @@ You can also declare multiple variables and assign values to them in a single st
 SET @x = 10, @y = 'Hello', @z = NOW();
 ```
 
-In MySQL, the `DECLARE` keyword is used to declare variables within stored programs such as stored procedures, functions, triggers, or compound statements. This keyword allows you to define variables that can be used to store data temporarily and perform various operations within the scope of the program.
+In MySQL, the `DECLARE` keyword is used to declare variables with in stored programs such as stored procedures, functions, triggers, or compound statements. This keyword allows you to define variables that can be used to store data temporarily and perform various operations within the scope of the program.
 
 The basic syntax for declaring variables using the `DECLARE` keyword is as follows:
 
@@ -54,7 +54,57 @@ Here's a simple example of declaring a variable named `counter` of type `INT` wi
 DECLARE counter INT DEFAULT 0;
 ```
 
-Once declared, you can then use this variable within the stored program to store and manipulate data as needed.
+Once declared, you can then use this variable with in the stored program to store and manipulate data as needed.
+
+## The Assignment Operator (:=)
+
+In MySQL, the := assignment operator is primarily used outside of SELECT statements to assign values to variables. This operator is not intended for use with in SELECT statements to assign values to variables directly from the result set. Instead, MySQL provides the INTO clause for this purpose.
+
+```sql
+-- Declare variables
+SET @first_name := '';
+SET @last_name := '';
+
+-- Select and assign values
+SELECT first_name, last_name
+INTO @first_name, @last_name
+FROM employees
+WHERE employee_id = 100;
+
+-- Now @first_name and @last_name variables contain the values retrieved from the query
+SELECT @first_name, @last_name;
+```
+
+> 💡 Note:
+> The reason you cannot use := inside a SELECT statement directly to assign values to variables is because the syntax of a SELECT statement is specifically designed to retrieve data from tables and views, not to perform assignments.
+>
+> The := operator is used for variable assignment in SQL statements such as SET, DECLARE, and SELECT...INTO, but it's not part of the standard SELECT syntax for fetching data.
+>
+> However, other database systems might have different functionalities or syntax. For instance, PostgreSQL allows variable assignment with in a SELECT statement using the := operator. So, the ability to use := inside a SELECT statement can depend onthe specific database system you're using and its supported syntax.
+>
+> ```sql
+> mysql> SELECT @max_salary := MAX(salary) FROM employees;
+> +----------------------------+
+> | @max_salary := MAX(salary) |
+> +----------------------------+
+> |                   62000.00 |
+> +----------------------------+
+> 1 row in set, 1 warning (0.00 sec)
+> mysql> show warnings;
+> +---------+------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+> | Level | Code | Message |
+> +---------+------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+> | Warning | 1287 | Setting user variables within expressions is deprecated and will be removed in a future release. Consider alternatives: 'SET variable=expression, ...', or 'SELECT expression(s) INTO variables(s)'. |
+> +---------+------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+> 1 row in set (0.00 sec)
+> mysql> select @max_salary;
+> +-------------+
+> | @max_salary |
+> +-------------+
+> | 62000.00 |
+> +-------------+
+> 1 row in set (0.00 sec)
+> ```
 
 ## Types of Variables
 
@@ -84,7 +134,7 @@ SET SESSION sql_mode = 'STRICT_ALL_TABLES';
 
 ### 3. Global Variables
 
-Global variables affect the entire MySQL server and persist across sessions. They can be set using the `SET GLOBAL` statement.
+Global variables affect the entire MySQL server and persist across sessions. They canbe set using the `SET GLOBAL` statement.
 
 **Example:**
 
@@ -118,40 +168,85 @@ SELECT @@version;
 
 **Use Case:** Retrieving the version of the MySQL server.
 
-### **Understanding Predefined, Special, and Dynamic Variables**
+## **Understanding Special, Dynamic, and Predefined Variables**
 
-##### **1. Predefined Variables:**
-
-Built-in variables provided by MySQL, offering information about server configuration or status. They cannot be directly modified and are set by the MySQL server itself. Examples include `@@version`, `@@global.max_connections`.
+**1. Special Variables:**
+Special variables provide insights in to server configuration and control specific behaviors. They are prefixed with `@@` and are typically read-only. Examples include `@@version`, `@@global.max_connections`, and `@@session.sql_mode`.
 
 _Example:_
 
 ```sql
--- Retrieve the version of the MySQL server
+-- Retrieve MySQL server version
 SELECT @@version;
 ```
 
-##### **2. Special Variables:**
-
-A subset of predefined variables that provide specific server information or control behaviors. Prefixed with `@@` and typically read-only. Examples include `@@version`, `@@global.max_connections`.
-
-_Example:_
-
-```sql
--- Set SQL mode for the current session
-SET @@session.sql_mode = 'STRICT_ALL_TABLES';
-```
-
-##### **3. Dynamic Variables:**
-
-User-defined variables allowing runtime parameter adjustments. Prefixed with `@` and modifiable using `SET` statement. Examples include `@max_connections`, `@wait_timeout`.
+**2. Dynamic Variables:**
+Dynamic variables allow runtime parameter adjustments without server restart. Prefixed with `@`, they can be set at session or global level and are modifiable using `SET` statements. Examples include `@max_connections`, `@wait_timeout`, etc.
 
 _Example:_
 
 ```sql
 -- Set maximum connections for the current session
-SET @@session.max_connections = 100;
+SET @max_connections = 100;
 ```
+
+**3. Predefined Variables:**
+Predefined variables are built-in and offer server configuration information. They include both special and dynamic variables.
+
+**Difference:**
+
+- **Special vs. Dynamic Variables:** Special variables provide server insights and control, while dynamic variables allow runtime adjustments. Special variables use `@@` prefix, while dynamic variables use `@`.
+- **Predefined vs. User-defined Variables:** Predefined variables are built-in and set by MySQL, while dynamic variables are user-defined and modifiable during runtime.
+
+Understanding these variable types helps optimize MySQL server configurations and operations efficiently.
+
+## **Variable Scope in MySQL**
+
+Variables in MySQL have a scope, which determines where they canbe accessed and modified. The scope of a variable refers to the part of the code where the variable is visible and can be used. There are mainly three scopes for variables:
+
+1. **Global Scope:**
+
+   - Global variables are accessible from anywhere within the MySQL server.
+   - They are defined at the server level and persist across sessions.
+   - Changes made to global variables affect the entire server.
+   - Example:
+
+```sql
+-- Set global variable
+SET GLOBAL @global_var = 10;
+```
+
+2. **Session Scope:**
+
+   - Session variables are specific to a single client session.
+   - They are defined when a client connects to the server and exist until the session ends.
+   - Changes made to session variables affect only the current session and do not impact other sessions.
+   - Examples:
+
+```sql
+-- Set session variable
+SET @session_var = 20;
+```
+
+3. **Local Scope:**
+   - Local variables are confined to a specific block of code, such as a stored procedure, function, or trigger.
+   - They are defined within the block of code where they are used and exist only within that block.
+   - Changes made to local variables are limited to the scope of the block of code where they are defined.
+     _Example:_
+
+```sql
+-- Stored procedure with local variable
+DELIMITER //
+CREATE PROCEDURE example_procedure()
+BEGIN
+    DECLARE local_var INT;
+    SET local_var = 30;
+    -- Use local_var within the stored procedure
+END //
+DELIMITER ;
+```
+
+Understanding the scope of variables is essential for writing efficient and organized code, as it helps prevent naming conflicts and ensures that variables are accessible where they are needed.
 
 ## Usage and Best Practices
 
@@ -211,6 +306,6 @@ WHERE order_id = @order_id;
 
 ## Conclusion
 
-MySQL variables offer a flexible and efficient way to manage data and control server behavior. By understanding the types of variables, their usage in SQL statements, and best practices, you can optimize query performance, streamline data manipulation, and enhance the overall efficiency of your MySQL database environment. Happy querying! 🚀
+MySQL variables offer a flexible and efficient way to manage data and control server behavior. By understanding types of variables, their usage in SQL statements, and best practices, you can optimize query performance, streamline data manipulation, and enhance the overall efficiency of your MySQL database environment. Happy querying! 🚀
 
 </article>

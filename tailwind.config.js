@@ -1,11 +1,9 @@
-const defaultTheme = require("tailwindcss/defaultTheme");
-
 module.exports = {
   darkMode: "class",
   content: [
-    "./src/app/**/*.{js,ts,jsx,tsx}",
-    "./pages/**/*.{js,ts,jsx,tsx}",
-    "./components/**/*.{js,ts,jsx,tsx}",
+    "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
+    "./pages/**/*.{js,ts,jsx,tsx,mdx}",
+    "./components/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
     screens: {
@@ -16,13 +14,50 @@ module.exports = {
       // => @media (min-width: 1024px) { ... }
     },
     extend: {
-      fontFamily: {
-        sans: ["Inter", ...defaultTheme.fontFamily.sans],
-      },
       colors: {
         background: "#faeede",
         title: "#665F54",
         otherblack: "#020201",
+        beige: "#FCF6F5FF",
+        other: "#89ABE3FF",
+        color1: "#02AABD",
+        color2: "#00CDAC",
+      },
+      animation: {
+        pop: "pop 0.6s ease-out",
+        sway: "sway 1.5s cubic-bezier(0.4, 0, 0.2, 1) ",
+        spinslow: "spin 5s linear infinite",
+      },
+      keyframes: {
+        sway: {
+          "0%": {
+            transform: "rotate(0deg)",
+          },
+          "50%": {
+            transform: "rotate(15deg)",
+          },
+          "100%": {
+            transform: "rotate(0deg)",
+          },
+        },
+        pop: {
+          "0%": {
+            transform: "scale(1)",
+          },
+          "50%": {
+            transform: "scale(1.1)",
+          },
+          "100%": {
+            transform: "scale(1)",
+          },
+        },
+      },
+      typography: {
+        DEFAULT: {
+          css: {
+            maxWidth: "100ch",
+          },
+        },
       },
     },
   },

@@ -15,7 +15,7 @@ We can wrap and Encapsulate all our code in the body of a function or procedure,
 
 ### Advantages of Using Procedures and Functions in SQL
 
-**Performance Improvement:** When we run an SQL statement, The DBMS has to parse the statement, optimize it, and then execute it. This process can be resource-intensive, especially for complex queries. But Stored Procedures and Functions are precompiled and stored in the database, which means that they can be executed more efficiently than ad-hoc SQL statements. This can be game-changing, especially for frequently executed operations. We can also control execution plans of stored procedures to improve performance. It also reduces network traffic since the code resides on the server, only the necessary parameters and results need to be transmitted over the network.
+**Performance Improvement:** When we run an SQL statement, The DBMS has to parse the statement, optimize it, and then execute it. This process can be resource-intensive, especially for complex queries. But Stored Procedures and Functions are precompiled and stored in the database, which means that they can be executed more efficiently than ad-hoc SQL statements. This can be game-changing, especially for frequently executed operations. We can also control execution plans of stored procedures to improve performance. It also reduces network traffic since the code resides on the server, only the necessary parameters and results need tobe transmitted over the network.
 
 **Code Reusability:** We don't have to write the same SQL logic multiple times in different parts of our application, this reduces the amount of code significantly and makes the code more maintainable. Making changes and updating the code becomes a lot easier since we only need to update it in one place.
 
@@ -24,11 +24,11 @@ We can wrap and Encapsulate all our code in the body of a function or procedure,
 - **Access Control:** We can grant and manage permissions at the stored procedure and function level so that only users with an appropriate level of access can perform specific operations.
 - **Data Validation:** We can prevent SQL injection attacks and ensure that only valid data is processed. We can achieve this by adding data validation logic within stored procedures and functions.
 
-  SQL injection attacks mainly include Data theft, Data manipulation, and Unauthorised Access.
+  SQL injection attacks mainly include Datatheft, Data manipulation,and Unauthorised Access.
 
 - **Auditing:** You can easily keep track of all the operations that were performed on the database by adding auditing logic to your stored procedures and functions.
 
-**Maintainability:** It is hard to maintain a complex database. But when it comes to stored procedures and functions, it becomes easier to maintain our codebase by encapsulating business logic within database objects. This simplifies debugging, testing, and code updates. We can also use version control systems to track the changes and roll back to previous versions if needed.
+**Maintainability:** It is hard to maintain a complex database. But when it comes to stored procedures and functions, it becomes easier to maintain our codebase by encapsulating business logic within database objects. This simplifies debugging, testing, and code updates. We can also use version control systems to track the changes and rollback to previous versions if needed.
 
 To sum it up, stored procedures and functions empower developers to enhance code reusability, improve performance, and maintain data integrity and security. Stored procedures are good at managing transactions and performing complex actions like Processing, manipulating, and modifying data, while functions are the go-to choice for encapsulating calculations and data transformations within SQL queries. By using these database objects, you can build robust, efficient, and secure database applications that are easier to develop and maintain, ultimately leading to better outcomes. However, like any other thing, there are a few disadvantages of stored procedures and functions that I am going to write about in the future.
 

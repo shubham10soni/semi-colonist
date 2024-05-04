@@ -1,24 +1,28 @@
 import Link from "next/link";
 import React from "react";
 import ThemeToggle from "./themetoggle";
-import Icons from "./icons";
+import Dropdown from "./dropdown";
+import { beb_neu, int_er, wind_song } from "@/utils/fonts";
 
 const Header = () => {
   return (
-    <header className="fixed top-0 bg-opacity-30 backdrop-filter  backdrop-blur-md py-4 px-6 flex justify-between items-center animate-fadeInUp w-full z-50 border-b-[0.5px] border-orange-100 dark:border-stone-700">
-      <div className="text-3xl font-extrabold tracking-tight ">
+    <header className="  flex   top-0  bg-transparent dark:bg-transparent  py-4 px-6 justify-between   laptop:ml-24 laptop:mr-24  sticky  z-10  backdrop-blur-[2px] backdrop-filter  border-b-[1px] border-zinc-100 dark:border-zinc-800 ">
+      <div className="text-3xl font-extrabold tracking-tight mt-1 ">
         <Link href={"/"}>
-          <span className="text-title dark:text-title text-2xl laptop:text-4xl">
+          <span
+            className={`text-zinc-900 dark:text-white   laptop:text-4xl text-3xl  ${beb_neu}  tracking-widest laptop:text-4xl`}
+          >
             Semi
           </span>
-          <span className="text-otherblack dark:text-background text-2xl laptop:text-4xl">
+          <span
+            className={`text-zinc-900 dark:text-white  laptop:text-4xl text-3xl ${beb_neu} tracking-widest laptop:text-4xl`}
+          >
             colonised
           </span>
         </Link>
       </div>
       <nav className="space-x-4 flex items-center">
-        {/* Social media icons  <Icons></Icons> */}
-
+        <Dropdown></Dropdown>
         <ThemeToggle />
       </nav>
     </header>

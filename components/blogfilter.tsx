@@ -1,3 +1,4 @@
+import { poppins } from "@/utils/fonts";
 import Link from "next/link";
 import React from "react";
 
@@ -22,14 +23,7 @@ export default function BlogFilter(tags: any) {
     <Link
       key={tag}
       href={`category/${tag}`}
-      className={`w-fit mt-2 ml-2 rounded hover:bg-orange-200 
-  
-     bg-orange-400
-    
-     outline-dashed
-      hover:outline-dashed outline-1
-      hover:outline-stone-900
-      px-3 py-1  text-[15px] font-bold text-stone-900 dark:outline-stone-100 dark:bg-orange-400  dark:hover:bg-orange-300`}
+      className={` ${poppins} relative  max-w-fit  ml-2 rounded px-3 py-2 mt-2 text-xs  font-medium text-stone-900  ring-1 ring-zinc-200     dark:ring-zinc-700 dark:text-zinc-100`}
     >
       {`# ${tag}`}
     </Link>

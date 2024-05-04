@@ -1,6 +1,7 @@
 // components/Typewriter.js
 "use client";
 
+import { agy, wind_song } from "@/utils/fonts";
 import { useEffect, useState } from "react";
 
 function Typewriter() {
@@ -17,7 +18,7 @@ function Typewriter() {
     }, 50); // Adjust the typing speed (in milliseconds)
   }, []);
 
-  return <div className="typewriter-text">{text}</div>;
+  return <div className={`typewriter-text  ${agy}`}>{text}</div>;
 }
 
 export default Typewriter;

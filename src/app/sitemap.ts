@@ -1,7 +1,7 @@
 import { allPosts } from "contentlayer/generated";
 
 export default async function sitemap() {
-  const baseUrl = "http://localhost:3000";
+  const baseUrl = "https://www.semicolonised.com";
 
   // Get All Posts
 

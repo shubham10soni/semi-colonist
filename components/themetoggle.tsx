@@ -15,11 +15,11 @@ const ThemeToggle = () => {
   }
   return (
     <button
-      className={`px-3 py-3 rounded ${
+      className={`transition delay-75 ease-out duration-300 rounded-full bg-zinc-50/90 px-3 py-2  ring-1 ring-zinc-300/40 hover:ring-zinc-500/20 backdrop-blur  dark:bg-zinc-800/90 dark:ring-white/10 dark:hover:ring-white/20  ${
         theme === "dark"
-          ? "bg-orange-200 text-slate-900"
-          : "bg-slate-900 text-orange-200"
-      }`}
+          ? "text-white bg-zinc-800/90 "
+          : "bg-white text-stone-600"
+      } `}
       onClick={() => setTheme(theme === "light" ? "dark" : "light")}
     >
       {theme === "dark" ? (

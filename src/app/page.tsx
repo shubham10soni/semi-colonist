@@ -3,12 +3,15 @@ import { compareDesc, format, parseISO } from "date-fns";
 import { allPosts, Post } from "contentlayer/generated";
 import { getMDXComponent } from "next-contentlayer/hooks";
 import BlogFilter from "components/blogfilter";
-
+import Work from "components/work";
 import TwitterPost from "components/twitterpost";
 import Icons from "components/icons";
 import Typewriter from "components/Typewriter";
 import Image from "next/image";
 import Yoda from "public/yoda.gif";
+import { agy, int_er, poppins, wind_song } from "@/utils/fonts";
+import Top3 from "components/top3";
+
 function PostTags(post: Post) {
   return (
     <div>
@@ -23,7 +26,7 @@ function PostCard(post: Post) {
   const Content = getMDXComponent(post.body.code);
 
   return (
-    <div className=" laptop:w-2/3 px-5 my-2 py-3 rounded  outline-dashed outline-1 border-gray-200 dark:border-gray-800 bg-stone-100 ">
+    <div className=" laptop:w-2/3 px-5 my-2 py-3 rounded   outline-transparent outline-slate-300 dark:border-gray-800 ">
       <div className="flex justify-between items-center">
         <span className=" text-gray-600 font-light">
           {format(parseISO(post.date), "LLLL d, yyyy")}
@@ -68,14 +71,102 @@ export default function Home() {
 
   return (
     <>
-      <div className="mt-10 mx-auto grid grid-flow-row  grid-cols-1 laptop:gap-4 laptop:grid-cols-2  ">
-        <div className="laptop:col-span-2 mx-50">
-          <h1 className="  dark:text-background  laptop:text-2xl text-xl font-mono  px-50 rounded-xl py-10">
-            <Typewriter></Typewriter>
-          </h1>
+      <div>
+        <div className=" grid grid-cols-2 gap-4   h-96 mx-50">
+          <div className="  flex flex-col gap-2  ">
+            <div className="  basis-1/2 flex flex-col  gap-1">
+              <div className=" basis-1/4">
+                <div
+                  className="h-16 w-16 laptop:h-20 laptop:w-20 relative
+               rounded-3xl overflow-hidden border-1 
+                shadow-xl"
+                >
+                  <Image
+                    src="/pi7.jpg"
+                    alt="Avatar"
+                    layout="fill"
+                    objectFit="cover"
+                  />
+                </div>
+              </div>
+              <div className=" basis-1/4 ">
+                <h1
+                  className={`${poppins} bg-gradient-to-r from-sky-600 to-emerald-500  dark:bg-gradient-to-r dark:from-sky-200 dark:to-emerald-200  inline-block text-transparent  bg-clip-text font-normal laptop:text-opacity-60 italic laptop:text-sm text-sm mt-2  leading-relaxed text-gray-500  `}
+                >
+                  MES Consultant, Full Stack Web Developer, Amateur Photographer
+                  with a Passion for Music and Travel
+                </h1>
+              </div>
+              <Link
+                href={"/about"}
+                className="hover:bg-zinc-50 dark:hover:bg-zinc-800/50   hover:rounded-xl"
+              >
+                <div
+                  className={` basis-1/4   ${poppins}  font-medium laptop:text-opacity-85 laptop:text-lg  text-sm mt-2   leading-relaxed text-gray-600  dark:text-gray-200`}
+                >
+                  I'm Shubham, and I wear a few hats: I help improve
+                  manufacturing as an MES Consultant and I build cool stuff on
+                  the web as a Full Stack Web Developer.
+                </div>
+                <div
+                  className={`mt-1 text-sm bg-gradient-to-r from-sky-600 to-emerald-500  dark:bg-gradient-to-r  dark:from-sky-200 dark:to-emerald-200  inline-block text-transparent  bg-clip-text`}
+                >
+                  Know more {">"}
+                </div>
+              </Link>
+              <div className=" basis-1/4 mt-4">
+                <Icons></Icons>
+              </div>
+            </div>
+            <div
+              className={` basis-1/2 line-clamp-4 ${poppins}  font-normal laptop:text-opacity-85 laptop:text-sm text-sm mt-2  leading-relaxed text-gray-700  dark:text-gray-200`}
+            ></div>
+          </div>
+          <div className=" grid grid-row-2   gap-2">
+            <div className=" flex flex-row gap-1">
+              <div className="basis-1/2 flex justify-center items-center ">
+                <div className="rounded-3xl w-4/5 h-4/5 -rotate-6 dark:hover:shadow-[0_35px_60px_-15px_rgba(100,100,100,0.3)] hover:shadow-[0_35px_60px_-15px_rgba(204,204,204,0.8)]  border-1 relative overflow-hidden  ">
+                  <Image
+                    src="/cp1.jpg"
+                    alt="Avatar"
+                    layout="fill"
+                    objectFit="cover"
+                  />
+                </div>
+              </div>
+              <div className=" basis-1/2 flex justify-center items-center ">
+                <div className="rounded-3xl w-[75%] h-[75%] laptop:h-[120%] rotate-2   dark:hover:shadow-[0_35px_60px_-15px_rgba(100,100,100,0.3)] hover:shadow-[0_35px_60px_-15px_rgba(204,204,204,0.8)]  relative border-1   overflow-hidden">
+                  <Image
+                    src="/cp3.3.jpg"
+                    alt="Avatar"
+                    layout="fill"
+                    objectFit="cover"
+                  />
+                </div>
+              </div>
+            </div>
+            <div className=" basis-1/2 flex justify-center items-center">
+              <div className="rounded-3xl w-3/5 h-[80%] rotate-1  dark:hover:shadow-[0_35px_60px_-15px_rgba(100,100,100,0.3)] hover:shadow-[0_35px_60px_-15px_rgba(204,204,204,0.8)] relative overflow-hidden border-1  ">
+                <Image
+                  src="/cp2.jpg"
+                  alt="Avatar"
+                  layout="fill"
+                  objectFit="cover"
+                />
+              </div>
+            </div>
+          </div>
         </div>
-
-        <div>
+        <div className="mt-20 laptop:flex laptop:flex-col-2  justify-between">
+          <div className=" basis-[40%] w-full">
+            <Top3></Top3>
+          </div>
+          <div className=" flex flex-col gap-10 basis-[40%]">
+            <Work></Work>
+          </div>
+        </div>
+      </div>
+      {/* <div>
           <div className="flex  flex-wrap w-fit ">
             <BlogFilter
               tags={arrString}
@@ -107,11 +198,11 @@ export default function Home() {
                 </div>
               </div>
 
-              {/* Add more contact details as needed */}
+              {/* Add more contact details as needed 
             </div>
           </div>
-        </div>
-      </div>
+        </div> 
+      */}
     </>
   );
 }
