@@ -45,7 +45,7 @@ const about = () => {
             className={` basis-[25%]  ${poppins} pt-20   tracking-wide text-zinc-800  dark:text-zinc-100`}
           >
             By day, I'm an MES Consultant, helping streamline manufacturing
-            processes, But when the workday ends, my passion for web development
+            processes, and when the workday ends, my passion for web development
             takes over.
           </div>
         </div>

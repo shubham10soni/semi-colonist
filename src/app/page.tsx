@@ -26,7 +26,7 @@ function PostCard(post: Post) {
   const Content = getMDXComponent(post.body.code);
 
   return (
-    <div className=" laptop:w-2/3 px-5 my-2 py-3 rounded   outline-transparent outline-slate-300 dark:border-gray-800 ">
+    <div className=" laptop:w-2/3 px-5 my-2 py-3 rounded    outline-slate-300 dark:border-gray-800 ">
       <div className="flex justify-between items-center">
         <span className=" text-gray-600 font-light">
           {format(parseISO(post.date), "LLLL d, yyyy")}

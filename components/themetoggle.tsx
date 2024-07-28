@@ -18,7 +18,7 @@ const ThemeToggle = () => {
       className={`transition delay-75 ease-out duration-300 rounded-full bg-zinc-50/90 px-3 py-2  ring-1 ring-zinc-300/40 hover:ring-zinc-500/20 backdrop-blur  dark:bg-zinc-800/90 dark:ring-white/10 dark:hover:ring-white/20  ${
         theme === "dark"
           ? "text-white bg-zinc-800/90 "
-          : "bg-white text-stone-600"
+          : "bg-white text-zinc-600"
       } `}
       onClick={() => setTheme(theme === "light" ? "dark" : "light")}
     >

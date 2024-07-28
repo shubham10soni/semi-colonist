@@ -18,7 +18,7 @@ const Dropdown: React.FC = () => {
     <div className="relative ">
       <button
         onClick={toggleDropdown}
-        className={` text-stone-600 bg-zinc-50/90 dark:bg-zinc-800 dark:text-zinc-50  ring-1  ring-zinc-300/40 hover:ring-zinc-500/20   ${int_er}  font-semibold  text-xs laptop:py-2 laptop:px-4 pl-3 pr-3 py-2   dark:bg-zinc-800/90 dark:ring-white/10 dark:hover:ring-white/20 hover:ring-white/30  rounded-3xl  `}
+        className={` text-zinc-600 bg-zinc-50/90 dark:bg-zinc-800 dark:text-zinc-50  ring-1  ring-zinc-300/40 hover:ring-zinc-500/20   ${int_er}  font-semibold  text-xs laptop:py-2 laptop:px-4 pl-3 pr-3 py-2   dark:bg-zinc-800/90 dark:ring-white/10 dark:hover:ring-white/20 hover:ring-white/30  rounded-3xl  `}
       >
         Menu
         <span className=" inline-block  pl-2 font-bold ">
