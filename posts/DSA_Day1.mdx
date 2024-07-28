@@ -9,8 +9,6 @@ desc: Solved my first DSA Problem on GFG
 
 ## DSA Day 1 :&#x20;
 
-### July,28-Sun
-
 ---
 
 ## Q1: [Count Digits (GFG)](https://www.geeksforgeeks.org/problems/count-digits5716/1)
@@ -55,17 +53,107 @@ class Solution{
         int num=N;
         while(N>0){
             int lastDigit=N%10;
-
             if(lastDigit!=0 && num%lastDigit==0){
                 counter=counter+1;
             }
             N=N/10;
-
         }
         return counter;
-
     }
 }
 ```
+
+---
+
+## [Count digits in a number](https://takeuforward.org/data-structure/count-digits-in-a-number/):&#x20;
+
+**Problem Statement:** Given an integer N, return the number of digits in N.
+
+**Examples**
+
+**Example 1:**
+
+**Input:**N = 12345
+
+**Output:**5
+
+**Explanation:** The number 12345 has 5 digits.
+
+**Example 2:**
+
+**Input:**N = 7789
+
+**Output:** 4
+
+**Explanation:** The number 7789 has 4 digits.
+
+---
+
+### Solution :
+
+```js
+//Brute Force Approach
+
+
+    public static int countDigits(int n) {
+        int cnt = 0;
+        while (n > 0) {
+            cnt = cnt + 1;
+            n = n / 10;
+        }
+        return cnt;
+    }
+```
+
+**Time Complexity: O(log<sub>10</sub>N + 1)** where N is the input number. The time complexity is determined by the number of digits in the input integer N. In the worst case when N is a multiple of 10 the number of digits in N is log<sub>10</sub>N + 1.
+
+1. In the while loop we divide N by 10 until it becomes 0 which takes log<sub>10</sub>N iterations.
+2. In each iteration of the while loop we perform constant time operations like division and increment the counter.
+
+**Space Complexity : O(1)** as only a constant amount of additional memory for the counter regardless of size of the input number.
+
+```js
+
+//Optimal Approach
+
+
+    // Calculate the count of digits in 'n'
+    // using logarithmic operation log10(n) + 1.
+    static int countDigits(int n) {
+        // Initialize a variable 'cnt' to
+        // store the count of digits.
+        int cnt = (int) (Math.log10(n) + 1);
+
+        // The expression (int)(Math.log10(n) + 1)
+        // calculates the number of digits in 'n'
+        // and casts it to an integer.
+
+        // Adding 1 to the result accounts
+        // for the case when 'n' is a power of 10,
+        // ensuring that the count is correct.
+
+        // Finally, the result is cast
+        // to an integer to ensure it is rounded
+        // down to the nearest whole number.
+
+        // Return the count of digits in 'n'.
+        return cnt;
+    }
+
+```
+
+**Time Complexity: O(1)** as simple arithmetic operations in constant time are computed on integers.
+
+**Space Complexity : O(1)** as only a constant amount of additional memory for the count variable regardless of size of the input number.
+
+:::tip
+when the number of iteration depends on division that is when something logarithmic come in the time complexity&#x20;
+
+e.g., if the division is happening by 10 then T.C.-> log<sub>10</sub>N&#x20;
+
+if the division is happening by 2 then T.C.-> log<sub>2</sub>N &#x20;
+
+if the division is happening by 5 then T.C.-> log<sub>5</sub>N.&#x20;
+:::
 
 </article>
